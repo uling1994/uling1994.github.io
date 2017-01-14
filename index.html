@@ -258,6 +258,198 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://uling1994.github.io/2017/01/14/regular-expression/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Uling Sama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://file03.16sucai.com/2016/01/2016xqk0xw3e31u.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Uling's Home">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Uling's Home" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/regular-expression/" itemprop="url">
+                  正则表达式的一千零一夜。
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-14T21:25:08+08:00">
+                2017-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Regular-expression"><a href="#Regular-expression" class="headerlink" title="Regular expression"></a>Regular expression</h4><ol>
+<li>语法；</li>
+<li>在IDE使用正则处理复杂的字符串查找替换功能；</li>
+<li>Js中使用正则处理字符串；</li>
+</ol>
+<p>大白话就是：按规则匹配符合条件的字符串，这就是正则表达式。</p>
+<p>有很多的符号都有自己特殊的含义，for example:</p>
+<ol>
+<li>.点表示任意字符；</li>
+<li>*表示全部字符；</li>
+<li>[ ]表示或者；</li>
+<li>^表示开始（也可以取反），$表示结束；</li>
+<li>( )表示分组；</li>
+<li>| 或，很好理解；</li>
+<li>$ 反向引用，代替每个分组；</li>
+</ol>
+<blockquote>
+<p>此处推荐一个在线匹配正则表达式可视化<a href="www.regexper.com">工具</a>.它会以流程图的形式表现出正则表达式，有助于理解，也可以clone到本地，通过本地端口打开，速度奇快~</p>
+</blockquote>
+<p>上面说了常用的符号，下面是字母的特殊含义，for example：</p>
+<ol>
+<li>\b ……\b匹配字符；</li>
+<li>\w 比配单词；</li>
+<li>g: 全局匹配，常放到\b；</li>
+<li>i:ignore case 忽略大小写；</li>
+<li>m:multiple lines 多行搜索；</li>
+</ol>
+<p>元字符+原意文本字符=正则表达式</p>
+<p>元字符:</p>
+<ol>
+<li>\n 换行；</li>
+<li>\r 回车；</li>
+<li>\o 空格；</li>
+<li>\f 换页；</li>
+<li>\cX 与X对应的控制字符；</li>
+</ol>
+<p>范围类：[a-zA-Z]从小写a到大写Z。（常用于邮箱匹配等交互中）<br>预定义类：</p>
+<ol>
+<li>\d=[0-9]</li>
+<li>\D=[^0-9] 大小写表示取反；</li>
+<li>\w=[a-zA-Z_0-9]字母到数字都归劳资管；</li>
+</ol>
+<p>单词边界：\b同理大写\B为取反：非单词边界。<br>量词：</p>
+<ol>
+<li>？出现0-1次；</li>
+<li>+出现大于等于一次；</li>
+<li>{n}出现n次；</li>
+<li>{n,}至少出现了n次；</li>
+</ol>
+<h3 id="前瞻与后顾"><a href="#前瞻与后顾" class="headerlink" title="前瞻与后顾"></a>前瞻与后顾</h3><p>前瞻：向前检查是否符合断言（尾部）；<br>后顾：相反（头部）*（Js并不支持，不考虑）；<br>正向前瞻：exp（？=assert）；<br>负向前瞻：exp（？！assert）；</p>
+<h4 id="RegExp-prototype-exec-str"><a href="#RegExp-prototype-exec-str" class="headerlink" title="RegExp.prototype.exec(str)"></a>RegExp.prototype.exec(str)</h4><p>更新全局Reg对象并反映匹配结果：null与数组；<br>index是被匹配的第一个字符；<br>input输出这个string；</p>
+<h4 id="stringI-prototype-exec-str"><a href="#stringI-prototype-exec-str" class="headerlink" title="stringI.prototype.exec(str)"></a>stringI.prototype.exec(str)</h4><ol>
+<li>search搜索很多项时返回第一项，没有则返回-1；</li>
+<li>不支持全局匹配；</li>
+<li>搜索指定字符串中的子字符串或与正则表达式相匹配的子字符串；</li>
+</ol>
+<p>match：找一个或多个与其匹配文本。</p>
+<ol>
+<li>全局，全部都匹配；</li>
+<li>非全局，仅匹配第一个子字符串；</li>
+</ol>
+<h4 id="split-reg"><a href="#split-reg" class="headerlink" title=".split(reg)"></a>.split(reg)</h4><p>就正如字面所写，就是把字符串中的某类字符删除</p>
+<h4 id="replace-“1”-2"><a href="#replace-“1”-2" class="headerlink" title=".replace(“1”,2)"></a>.replace(“1”,2)</h4><ul>
+<li>（str，replaceStr）</li>
+<li>（reg，replaceStr）</li>
+<li>（reg，function）</li>
+</ul>
+<ol>
+<li>匹配字符串；</li>
+<li>正则分组内容，没有分组则没有参数；</li>
+<li>匹配项中的index；</li>
+<li>原字符串</li>
+</ol>
+<h3 id="最后我推荐一个我的收藏"><a href="#最后我推荐一个我的收藏" class="headerlink" title="最后我推荐一个我的收藏"></a>最后我推荐一个我的收藏</h3><p><a href="http://www.tuicool.com/articles/UvYNnuz" target="_blank" rel="external">这二十个正则表达式，让你少写1000行代码</a><br>希望可以让我少写1000行代码，<br>多发会呆。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://uling1994.github.io/2017/01/10/hexo/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -671,7 +863,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -682,7 +874,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
