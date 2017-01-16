@@ -656,16 +656,14 @@
 
       
         
-          
-            <p>今天终于，终于，终于把blog搭建出来了，可能有人会说。<br>A：“这东西不难啊，怎么还不懂？”<br>B：“对啊，对啊，上网Google，百度不有一堆教程。”<br> 可是，为什么还是有那么多的问题，还有那么多的人不会，甚至放弃搭建blog？</p>
-<h4 id="我说一下我自己的想法："><a href="#我说一下我自己的想法：" class="headerlink" title="我说一下我自己的想法："></a>我说一下我自己的想法：</h4><p>1,其实hexo的坑已经被踩烂了已经，真的不难，需要你去细心的去理解每一个Error。<br>那为什么你还弄了那么半天，因为我是天秤座，选择巨困难型，看了两天的主题素材，都好好看啊<br>2,再有就是Node.js的安装问题，因为要用到npm这个管理工具，它的的安装环境问题。有这类问题的请重新捡起hexo，因为：<br>现在npm和node.js在一起安装时会自动设置安装环境！所以请不要再拿不会npm等等问题说事情。<br>3,其实搭建完了，自己还是蛮开心的一件事情，因为自己可以写点自己看的东西了，不敢去知乎上大吵大闹，那就在自己的栖息地里沉淀出底蕴后，再去知乎搞点大事情。</p>
-<h4 id="说一下自己踩过的坑，教程网上有很多，这里放几个传送门。"><a href="#说一下自己踩过的坑，教程网上有很多，这里放几个传送门。" class="headerlink" title="说一下自己踩过的坑，教程网上有很多，这里放几个传送门。"></a>说一下自己踩过的坑，教程网上有很多，这里放几个传送门。</h4><p><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">http://www.jianshu.com/p/465830080ea9</a><br>HEXO+Github,搭建属于自己的博客<br><a href="http://blog.csdn.net/qq_15807167/article/details/51601234" target="_blank" rel="external">http://blog.csdn.net/qq_15807167/article/details/51601234</a><br> hexo在github上搭建个人博客详细步骤</p>
-<p>这两个写的很详细，接下来我要写一些Error的出现和修改方法。</p>
-<h4 id="请尊重每一个出现的Error，他会教会你很多东西"><a href="#请尊重每一个出现的Error，他会教会你很多东西" class="headerlink" title="请尊重每一个出现的Error，他会教会你很多东西"></a>请尊重每一个出现的Error，他会教会你很多东西</h4><p>首先<br>此时，你已经可以看到自己的本地静态页面了，<br><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><br>你会看到一个中规中矩的hexo页面，你还在幻想你的blog如何去写第一篇文章时，你会发现hexo-d 是有错误的，ERROR Deployer not found: git 或者 ERROR Deployer not found: github。<br>1 你是否进行了npm install hexo-deployer-git –save<br>这个问题主要出现在高版本的情况，需要修改git/github的形式，根据错误提示修改；<br>2 你在申请git仓库名字时，最好要将仓库名字和你的用户名是一致的，如果你用了非用户名的方式，你可能会出现一下几点问题<br>①你可能会404，没有此page  ；<br>②白板，没有css装饰过的html，可想而知有多么恐怖；<br>所以防止出现不必要麻烦，请用统一的名字；<br>再者<br>此时，你已经有了一个主题在你的themes里面躺着了，如何去设置你自己的头像，姓名，等等细节东西，如果你够细心的话，你会发现，其实他们早就被你发现了，他们就存在你的_config.yml（根目录与主题的目录各有一个），在此说一下头像的问题，有的主题头像支持url的方式，但是并不是最友好的方式，望君可以通过以下方式<br>/img/pic.jpg(这是我的路径，请换成自己的路径)<br>最后像我一样，此时像我一样写一篇文章了<br>你要知道发布的方式，首先你要会Markdown的写法，花个十分钟学会它对聪明的你并不是难事。会Markdown了，但是却没有编辑器，以下是几款很好用的编辑器：<br>1，Sublim3<br>万能的Sublim，此乃神器也。<br>2，简书<br>虽然很少用简书，但是耐不住文章写的好啊，推荐哟~<br>3，马克飞象<br>我自己用的，无脑推荐，相当好用，是chrome的插件，而且是在线的编辑器，除了主题让人忍不住想吐槽。<br>4，Markdownpad<br>很不错的软件，但是插图据说是花钱的，所以跟上面三个没有对比性而言。</p>
-<p>此时你已经迫不及待的想写一篇博文去得到大家的认可了，你要会如何去发布一篇博文<br>hexo n “文章名字”<br>他会提示你这篇文章去了哪里，到你的blog/source/_posts处了。<br>打开会有title：date：tags：如实填写即可。<br>之后  hexo g  生成静态文件，hexo s 观看本地预览效果，hexo d 发布即可，同步到github上。</p>
-<p>回到题目上，Github + hexo = blog？<br>不仅仅是blog，它是一个学习的地方，让思维解放的地方。</p>
-
-          
+          <p>今天终于，终于，终于把blog搭建出来了，可能有人会说。<br>A：“这东西不难啊，怎么还不懂？”<br>B：“对啊，对啊，上网Google，百度不有一堆教程。”<br> 可是，为什么还是有那么多的问题，还有那么多的人不会，甚至放弃搭建blog？<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/09/github-hexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
