@@ -337,85 +337,14 @@
 
       
         
-          
-            <p><img src="http://ojvklb7qu.bkt.clouddn.com/background3.png?imageslim" alt="Wechat"><br>作为一个小白的我，曾经一度认为weex和微信小程序是有一腿的（对不起，鞠躬；）<br>我今天看了 @余博伦 的文章之后，很赞同一句话，那就是微信小程序离把app玩出花来还有很长的一段时间，但是很想看看如果微信这大事情搞成了，会是一副什么样子？（这是后话）</p>
-<h3 id="今天有个小目标：微信小程序DIY-（Day-One）"><a href="#今天有个小目标：微信小程序DIY-（Day-One）" class="headerlink" title="今天有个小目标：微信小程序DIY （Day One）"></a>今天有个小目标：微信小程序DIY （Day One）</h3><p>前面的注册下载请自行（baidu/Google） <a href="https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=2017117" target="_blank" rel="external">链接</a></p>
-<p>你会在根文件看到三个文件很赤裸的出现在你面前</p>
-<ul>
-<li>app.js  他是微信小程序的逻辑；</li>
-<li>app.json  他是小程序的公共设置；</li>
-<li>app.wxss 他是小程序的公共样式表；</li>
-</ul>
-<p>但是一个小程序页面并不是光由这三个文件组成的</p>
-<ul>
-<li>还有一个wxml的页面结构</li>
-</ul>
-<p>注意：为了方便开发者减少配置项，我们规定描述页面的这四个文件必须具有相同的路径与文件名。</p>
-<h4 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h4><p>app.json是对小程序进行全局配置，从而决定页面文件的路径，窗口表现，设置网络超时，等等；</p>
-<ul>
-<li>pages 设置页面路径，【路径+文件名】，文件名不需要加后缀，框架会自动寻找路径整合；</li>
-<li>window 设置默认页面的窗口表现，例如：状态栏，导航条（navigation），标题，等等颜色背景色；</li>
-<li>tabBar 设置底层（顶部）tab的表现，它是一个数组，最少两个，最多五个，按顺序排序；</li>
-<li>networkTimeout 网络超时；</li>
-<li>debug 是否开启debug模式；</li>
-</ul>
-<h4 id="page-gt-index-json"><a href="#page-gt-index-json" class="headerlink" title="page =&gt; index.json"></a>page =&gt; index.json</h4><p>细心的朋友会发现，除了app.json还有一个index.json在page文件下，在页面配置下会覆盖与全局配置相同项的配置项，页面配置.json只能配置window相关的配置项，决定本页面的窗口表现，无需写window键。</p>
-<h3 id="逻辑层"><a href="#逻辑层" class="headerlink" title="逻辑层"></a>逻辑层</h3><p>由于小程序框架也是由Js编写，所以在Js的基础上，小程序做了一些修改（美其名曰：为了更好地开发）</p>
-<h4 id="App"><a href="#App" class="headerlink" title="App();"></a>App();</h4><p>App()函数是用来注册一个小程序，接收一个object参数。</p>
-<h4 id="getApp"><a href="#getApp" class="headerlink" title="getApp();"></a>getApp();</h4><p>获取小程序实例。<br><code><br>var appInstance = getApp()<br>console.log(this.globalData)<br></code></p>
-<h4 id="page"><a href="#page" class="headerlink" title="page ()"></a>page ()</h4><p>page 函数用来注册页面，接受一个object参数；</p>
-<h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><p>事件触发，就会执行page中定义的事件处理函数；<br><code><br>&lt; view bindtap=”tap”&gt;click me~&lt; /view&gt;<br></code><br><code><br>Page ({<br>tap : function ()<br>{<br>cosole.log(‘hey,gays!)<br>}<br>})<br></code></p>
-<h4 id="setData"><a href="#setData" class="headerlink" title="setData()"></a>setData()</h4><p>接受一个对象，以key，value形式将this.data中的key对应的值改变成value。<br>key以数据路径的形式传递，不需要再this.data中预先定义、<br><code><br>&lt; view &gt;<br>NaN<br>&lt; /view&gt;<br>&lt; button bindtap=”changeText/changeItemInArray…”&gt;Change and so on<br>&lt; /button&gt;<br></code></p>
-<h3 id="页面的路由"><a href="#页面的路由" class="headerlink" title="页面的路由"></a>页面的路由</h3><p>初始化=&gt;打开新页面=&gt;页面重定向=&gt;页面返回=&gt;Tab切换<br>前三个过程路由后页面：onLoad与onShow<br>页面返回：只剩下onShow<br>触发：详见其API；</p>
-<h3 id="文件作用域"><a href="#文件作用域" class="headerlink" title="文件作用域"></a>文件作用域</h3><p>声名的文件与变量在同一个文件有效，不同文件可以声明同一个变量和函数；</p>
-<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><p>我们可以将一些公共的代码抽离成为一个单独的 js 文件，作为一个模块。模块只有通过 module.exports 或者 exports 才能对外暴露接口。</p>
-<ul>
-<li>最好采用module.exports的形式将接口暴露。</li>
-<li>小程序目前不支持node_modules，</li>
-<li>需要使用模块文件时，使用require（path）将公共代码引入<br><code><br>var something = require(“something.js”)<br>Page({<br>  maybe: function() {<pre><code>something.sayHello(&quot;123&quot;)
-</code></pre>  },<br>  ……<br>})<br></code></li>
-</ul>
-<h3 id="视图层"><a href="#视图层" class="headerlink" title="视图层"></a>视图层</h3><p>与此同时，微信小程序也有了自己的一套WXML标签语言。</p>
-<h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><p>通过双花括号将变量包起来，然后动态数据来自于page-data里面；<br>关键字需要在双引号内，布尔值的true and false：<br>&lt; checkbox checked=”false“&gt;<br><code><br>&lt; !–wxml– &gt;<br>&lt; view &gt;&lt; view &gt;<br></code><br><code><br>//page .js<br>page({<br>    data:  {<br>message:  ‘hello world!’<br>}<br>})<br></code></p>
-<h4 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h4><p><code><br>&lt; !–wxml– &gt;<br>&lt; view wx:for=”“ &gt;  &lt; /view &gt;<br></code><br><code><br>// .js<br>page({<br>    data:  {<br>array:  [1,2,3,4,5]<br>}<br>})<br></code></p>
-<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><h4 id="wx：if"><a href="#wx：if" class="headerlink" title="wx：if"></a>wx：if</h4><p>在框架中我们利用wx：if=“”来判断是否需要渲染改代码块<br>其次还有wx：elif   与  wx：else来添加else块；</p>
-<h4 id="block-wx：if"><a href="#block-wx：if" class="headerlink" title="block wx：if"></a>block wx：if</h4><p>一次性判断多个组件标签，请利用&lt; block/&gt;标签<br><code><br>&lt; block wx:if=”true“&gt;<br>&lt; view &gt; v1&lt; /view&gt;<br>…<br></code></p>
-<h3 id="列表渲染-1"><a href="#列表渲染-1" class="headerlink" title="列表渲染"></a>列表渲染</h3><h4 id="wx-for"><a href="#wx-for" class="headerlink" title="wx:for"></a>wx:for</h4><p>通过控制属性绑定数组，来重复渲染该组件，以达到目的；<br>使用 wx:for-item 可以指定数组当前元素的变量名，<br>使用 wx:for-index 可以指定数组当前下标的变量名：<br><code><br>&lt; view wx:for=”“&gt;<br>  : <br>&lt; /view&gt;<br></code></p>
-<h4 id="block-wx-for"><a href="#block-wx-for" class="headerlink" title="block wx:for"></a>block wx:for</h4><p>与条件渲染相似，block在这里同样是渲染一个包含多节点的结构块，用法类似wx:if；</p>
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用。<br>使用name属性，作为模板的名字。然后在<template>内定义代码片段；<br><code><br>&lt; template name=”msgItem”&gt;<br>  &lt; view&gt;<br>    &lt; text&gt; :  &lt; /text&gt;<br>    &lt; text&gt; Time:  &lt; /text&gt;<br>  &lt; /view&gt;<br>&lt; /template&gt;<br></code><br>使用模板只需要使用is属性，然后把需要的data传入即可；</template></p>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>事件之分为：冒泡与非冒泡事件；</p>
-<h4 id="事件绑定-1"><a href="#事件绑定-1" class="headerlink" title="事件绑定"></a>事件绑定</h4><p>事件绑定的写法同组件的属性，以 key、value 的形式。</p>
-<ul>
-<li>key 以bind或catch开头，然后跟上事件的类型，如bindtap, catchtouchstart</li>
-<li>value 是一个字符串，需要在对应的 Page 中定义同名的函数。不然当触发事件的时候会报错。</li>
-</ul>
-<p>记住：bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡。</p>
-<h4 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h4><ul>
-<li>tyoe</li>
-<li>timeStamp：事件生成时间戳</li>
-<li>target：触发事件的组件的属性值集合</li>
-<li>currentTarget ： 当前的属性值集合</li>
-</ul>
-<h3 id="引用的方式"><a href="#引用的方式" class="headerlink" title="引用的方式"></a>引用的方式</h3><ul>
-<li>import：一个有作用域的的引用模板的方式；</li>
-<li>include：有点类似把完整模板阉割掉标签的形式传递给它引用的地方；</li>
-</ul>
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>说白了就是css的变形记，但是相比css又拥有自己的扩展特性：</p>
-<ul>
-<li>尺寸单位 （用rem不好吗，hhh）：rpx可以根据屏幕自适应（1rpx=0.5px）</li>
-<li>样式的导入 ：@import可以导入外链样式表，跟需要导入的外联样式表的相对路径<br><code><br>@import “common.wxss”;<br>.middle-p {<br>padding:15px;<br>}<br></code><h4 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h4></li>
-<li>style：style 接收动态的样式，在运行时会进行解析，请尽量避免将静态的样式写进 style 中，以免影响渲染速度。</li>
-<li>class：用于指定样式规则，其属性值是样式规则中类选择器名(样式类名)的集合，样式类名不需要带上.，样式类名之间用空格分隔。</li>
-</ul>
-<blockquote>
-<p>话外题：什么是渲染速度(就是打开网页的速度)；</p>
-</blockquote>
-<p>大概就是这么多，在做一个微信小程序之前，不说能懂，至少要先看一遍，你说对不对，API和组件一边写一边过就成。</p>
-<p>我接着写去了，拜拜</p>
-<p>ps：今天看了一个小伙伴在公司被boss欺负了，仲裁了，Orz，不知道什么时候国内互联网公司也能像国外一样弹，弹性的弹，不是弹牙的弹。</p>
-<p>bye~</p>
-
-          
+          <p><img src="http://ojvklb7qu.bkt.clouddn.com/background3.png?imageslim" alt="Wechat"><br>作为一个小白的我，曾经一度认为weex和微信小程序是有一腿的（对不起，鞠躬；）<br>我今天看了 @余博伦 的文章之后，很赞同一句话，那就是微信小程序离把app玩出花来还有很长的一段时间，但是很想看看如果微信这大事情搞成了，会是一副什么样子？（这是后话）</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/19/wechat1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
